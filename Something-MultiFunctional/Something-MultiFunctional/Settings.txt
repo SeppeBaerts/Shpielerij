@@ -1,0 +1,2 @@
+﻿Mode = Dark_Mode
+High_Score= 1582
