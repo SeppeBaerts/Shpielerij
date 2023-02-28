@@ -57,15 +57,17 @@ namespace Solitaire2_Tryout
         private void CardImage_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
         {
             IsMoving = false;
+            oldMouseLocation = e.GetPosition(ParentCanvas);
+
         }
 
         private void CardImage_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
         {
             if (IsMoving)
             {
-                Canvas.SetLeft(CardImage, Canvas.GetLeft(CardImage) + e.GetPosition((Image)sender).X - oldMouseLocation.X);
-                Canvas.SetTop(CardImage, Canvas.GetTop(CardImage) + e.GetPosition((Image)sender).Y - oldMouseLocation.Y);
-                oldMouseLocation = e.GetPosition((Image)sender);
+                Canvas.SetLeft(CardImage, Canvas.GetLeft(CardImage) + e.GetPosition(ParentCanvas).X - oldMouseLocation.X);
+                Canvas.SetTop(CardImage, Canvas.GetTop(CardImage) + e.GetPosition(ParentCanvas).Y - oldMouseLocation.Y);
+                oldMouseLocation = e.GetPosition(ParentCanvas);
             }
             if (!IsMoving)
             {
@@ -76,7 +78,6 @@ namespace Solitaire2_Tryout
         private void CardImage_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             IsMoving = true;
-            
         }
 
         public void Move(Point location)
