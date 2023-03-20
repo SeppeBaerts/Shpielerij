@@ -1,0 +1,2 @@
+﻿--Opsommings karakter;-;
+::Show content on startup;true;

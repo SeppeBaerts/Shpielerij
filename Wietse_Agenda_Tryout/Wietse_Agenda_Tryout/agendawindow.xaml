@@ -1,17 +1,27 @@
-﻿<Window x:Class="Wietse_Agenda_Tryout.AgendaWindow"
+﻿<Window x:Name="window" x:Class="Wietse_Agenda_Tryout.AgendaWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Wietse_Agenda_Tryout"
         mc:Ignorable="d"
-        Title="agendawindow" Height="450" Width="800">
+        Title="agendawindow" Height="800" Width="1300" Loaded="Window_Loaded">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
-            <MenuItem Name="Save" Header="Save" Click="Save_Click"></MenuItem>
+            <MenuItem Name="MnuSave" Header="Save" Click="Save_Click"></MenuItem>
+            <MenuItem Name="MnuLoad" Header="Load" Click="Load_Click"/>
+            <MenuItem Name="MnuClear" Header="Clear" Click="Clear_Click"/>
+            <MenuItem Name="MnuSettings" Header="Settings" Click="MnuSettings_Click"/>
+            <MenuItem Name="MnuPrint" Header="Print" Click="MnuPrint_Click"/>
+            <MenuItem Name="MnuScan" Header="Scan" Click="MnuScan_Click"/>
+            <MenuItem Name="MnuShow" Header="Toggle content" Click="MnuShow_Click"/>
         </Menu>
         <Grid>
-            <Canvas Name="AgendaCanvas" AllowDrop="True" Background="White" DragOver="AgendaCanvas_DragOver" DragLeave="AgendaCanvas_DragLeave">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2.8*"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Canvas Name="AgendaCanvas" Grid.Row="0" AllowDrop="True" Background="White" DragOver="AgendaCanvas_DragOver" DragLeave="AgendaCanvas_DragLeave">
                 <Grid>
                     <!--Grid zijn width Koppelen aan de actualwidth van het canvas, zorgen dat wrappanel rechts is uitgelijnd-->
                     <Grid.ColumnDefinitions>
@@ -19,31 +29,42 @@
                         <ColumnDefinition Width="3*"/>
                     </Grid.ColumnDefinitions>
                     <StackPanel Name="StackUren" Width="120" Margin="5 10" MinHeight="400" Background="Gray" IsHitTestVisible="False">
-                        <Label Content="Uur" HorizontalAlignment="Left" FontFamily="Arial Black" FontSize="18" />
-                        <Label Content="8.40u-9.30u" Height="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2" />
-                        <Label Content="9.30u-10.20u" Height="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2" />
-                        <Label Content="10.30u-11.20u" Height="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2"/>
+                        <Label Content="Uur" HorizontalAlignment="Left" FontFamily="Arial Black" FontSize="18" Height="30.6966666666667" />
+                        <Label x:Name="LblFistHour" Content="8.40u-9.30u" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2" >
+                        </Label>
+                        <Label Name="LblSecondHour" Content="9.30u-10.20u" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2" />
+                        <Label Name="LblThirdHour" Content="10.45u-11.35u" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2"/>
+                        <Label Name="LblFourthHour" Content="11.35-12.25" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2"/>
+                        <Label Name="LblFifthHour" Content="13.35-14.25" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2"/>
+                        <Label Name="LblSixthHour" Content="14.25-15.20" MinHeight="50" FontFamily="Arial" FontSize="18" Padding="0,15,0,0" BorderBrush="Black" BorderThickness="2"/>
                     </StackPanel>
-                    <WrapPanel Name="WrapAgenda" Canvas.Top="0" Canvas.Bottom="0" Canvas.Left="0" Canvas.Right="0" Grid.Column="1">
+                    <WrapPanel Name="WrapAgenda" Canvas.Top="0" Canvas.Bottom="0" Canvas.Left="0" Canvas.Right="0" Grid.Column="1" Height="{Binding ElementName=window, Mode=OneWay}" >
                         <StackPanel Name="StackMaandag" MinWidth="120" Margin="5 10" MinHeight="400" Background="Gray" AllowDrop="True" Drop="Stack_Drop" DragOver="StackPanel_DragOver" DragLeave="StackPanel_DragLeave">
                             <Label Content="Maandag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
-                            <!--<Border BorderThickness="2" BorderBrush="Black" Width="150" Height="50" Panel.ZIndex="-5"/>-->
                         </StackPanel>
                         <StackPanel Name="StackDinsdag" MinWidth="120" MinHeight="400" Margin="5 10" Background="Gray" Drop="Stack_Drop" DragOver="StackPanel_DragOver" DragLeave="StackPanel_DragLeave">
-                            <TextBlock Text="Dinsdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
+                            <Label Content="Dinsdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
                         </StackPanel>
                         <StackPanel Name="StackWoensdag" MinWidth="120" MinHeight="400" Margin="5 10" Background="Gray" Drop="Stack_Drop" DragOver="StackPanel_DragOver" DragLeave="StackPanel_DragLeave">
-                            <TextBlock Text="Woensdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
+                            <Label Content="Woensdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
                         </StackPanel>
                         <StackPanel Name="StackDonderdag" MinWidth="120" MinHeight="400" Margin="5 10" Background="Gray" Drop="Stack_Drop" DragOver="StackPanel_DragOver" DragLeave="StackPanel_DragLeave">
-                            <TextBlock Text="Donderdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
+                            <Label Content="Donderdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
                         </StackPanel>
                         <StackPanel Name="StackVrijdag" MinWidth="120" MinHeight="400" Margin="5 10" Background="Gray" Drop="Stack_Drop" DragOver="StackPanel_DragOver" DragLeave="StackPanel_DragLeave">
-                            <TextBlock Text="Vrijdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
+                            <Label Content="Vrijdag" HorizontalAlignment="Center" FontFamily="Arial Black" FontSize="18" />
                         </StackPanel>
                     </WrapPanel>
                 </Grid>
             </Canvas>
+            <Grid Grid.Column="1">
+                <StackPanel Margin="15">
+                    <Label Content="Naam:" FontSize="15"/>
+                    <TextBox Name="TxtName" FontSize="15" KeyDown="TxtName_KeyDown"/>
+                    <Label Content="Content:" FontSize="15"/>
+                    <TextBox Name="TxtContent" FontSize="15" Height="250" KeyDown="TxtName_KeyDown"/>
+                </StackPanel>
+            </Grid>
         </Grid>
     </DockPanel>
 </Window>

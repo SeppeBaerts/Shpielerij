@@ -20,13 +20,11 @@ namespace Wietse_Agenda_Tryout
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<DragBox> dragBoxes = new List<DragBox>();
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void MainCanvas_MouseMove(object sender, MouseEventArgs e)
-        {
+            
         }
 
         private void MainCanvas_DragOver(object sender, DragEventArgs e)
@@ -68,6 +66,8 @@ namespace Wietse_Agenda_Tryout
                 {
                     y +=50;
                     DragBox drag = new DragBox(MainCanvas, st.Trim('-'), false, new Point(x,y));
+                    SettingStatic.Dragboxes.Add(drag);
+                    drag.DraggingBox.MouseDoubleClick += DraggingBox_MouseDoubleClick;
                 }
                 else
                 {                    
@@ -75,6 +75,24 @@ namespace Wietse_Agenda_Tryout
                     y = 10;
                     DragBox drag = new DragBox(MainCanvas, st, true, new Point(x, y));
                 }
+            }
+        }
+
+        private void DraggingBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Label lbl = ((Label)sender);
+            if(SettingStatic.CurrentLable != null)
+            {
+                Label lbt = SettingStatic.CurrentLable;
+                lbt.Tag = SettingStatic.TxtExtraContent.Text;
+                ((TextBlock)lbt.Content).Text = SettingStatic.TxtNaam.Text;
+            }
+            if (SettingStatic.TxtNaam != null)
+            {
+
+                SettingStatic.TxtNaam.Text = lbl.Content is string s ? s : ((TextBlock)lbl.Content).Text;
+                SettingStatic.TxtExtraContent.Text = (string)lbl.Tag;
+                SettingStatic.CurrentLable = lbl;
             }
         }
     }

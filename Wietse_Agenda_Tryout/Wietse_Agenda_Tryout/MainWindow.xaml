@@ -17,7 +17,7 @@
             </Grid.ColumnDefinitions>
             <TextBox Name="TxtGetText" VerticalAlignment="Center" Height="250" AcceptsReturn="True" ></TextBox>
             <Button Name="BtnGetVakken" Content="Scan Vakken" VerticalAlignment="Bottom" Margin="0 15" Click="BtnGetVakken_Click"/>
-            <Canvas Name="MainCanvas" Grid.Column="1" MouseMove="MainCanvas_MouseMove" AllowDrop="True" Background="White" DragOver="MainCanvas_DragOver" DragLeave="MainCanvas_DragLeave">
+            <Canvas Name="MainCanvas" Grid.Column="1" AllowDrop="True" Background="White" DragOver="MainCanvas_DragOver" DragLeave="MainCanvas_DragLeave">
             </Canvas>
         </Grid> 
     </DockPanel>
