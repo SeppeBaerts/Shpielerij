@@ -1,0 +1,172 @@
+﻿<Window x:Class="DigitaleKlokMaken.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitaleKlokMaken"
+        mc:Ignorable="d"
+        Title="Klok" Height="320" Width="800">
+    <Grid Name="MainGrid" Background="#FF00002B">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Canvas Name="CanvasLeft">
+            <Path Fill="#FF5F5006" Name="L1">
+                <Path.Data>
+                    <RectangleGeometry Rect="40,10,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L2">
+                <Path.Data>
+                    <RectangleGeometry Rect="145,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L3" HorizontalAlignment="Center" >
+                <Path.Data>
+                    <RectangleGeometry Rect="40,125,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FFFDFF00" Name="L4">
+                <Path.Data>
+                    <RectangleGeometry Rect="25,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L5">
+                <Path.Data>
+                    <RectangleGeometry Rect="145,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L6">
+                <Path.Data>
+                    <RectangleGeometry Rect="40,245,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L7">
+                <Path.Data>
+                    <RectangleGeometry Rect="25,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L8">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,10,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L9">
+                <Path.Data>
+                    <RectangleGeometry Rect="305,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L10">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,125,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L11">
+                <Path.Data>
+                    <RectangleGeometry Rect="185,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L12">
+                <Path.Data>
+                    <RectangleGeometry Rect="305,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L13">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,245,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="L14">
+                <Path.Data>
+                    <RectangleGeometry Rect="185,135,10,120" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="CanvasRight" Grid.Column="2">
+            <Path Fill="#FF5F5006" Name="R1">
+                <Path.Data>
+                    <RectangleGeometry Rect="40,10,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R2">
+                <Path.Data>
+                    <RectangleGeometry Rect="145,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R3" HorizontalAlignment="Center" >
+                <Path.Data>
+                    <RectangleGeometry Rect="40,125,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R4">
+                <Path.Data>
+                    <RectangleGeometry Rect="25,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R5">
+                <Path.Data>
+                    <RectangleGeometry Rect="145,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R6">
+                <Path.Data>
+                    <RectangleGeometry Rect="40,245,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R7">
+                <Path.Data>
+                    <RectangleGeometry Rect="25,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R8">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,10,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R9">
+                <Path.Data>
+                    <RectangleGeometry Rect="305,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R10">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,125,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R11">
+                <Path.Data>
+                    <RectangleGeometry Rect="185,10,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R12">
+                <Path.Data>
+                    <RectangleGeometry Rect="305,135,10,120" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R13">
+                <Path.Data>
+                    <RectangleGeometry Rect="200,245,100,10" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="R14">
+                <Path.Data>
+                    <RectangleGeometry Rect="185,135,10,120" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+        <Canvas Name="CanvasMiddle" Grid.Column="1">
+            <Path Fill="#FF5F5006" Name="PointUpper">
+                <Path.Data>
+                    <RectangleGeometry Rect="20,50,30,30" />
+                </Path.Data>
+            </Path>
+            <Path Fill="#FF5F5006" Name="PointLower">
+                <Path.Data>
+                    <RectangleGeometry Rect="20,170,30,30" />
+                </Path.Data>
+            </Path>
+        </Canvas>
+    </Grid>
+</Window>

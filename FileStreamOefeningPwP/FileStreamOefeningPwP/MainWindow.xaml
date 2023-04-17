@@ -1,0 +1,29 @@
+﻿<Window x:Class="FileStreamOefeningPwP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileStreamOefeningPwP"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3.2*"/>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <ListBox Name="LsbVoornamen" Margin="10" FontSize="15"/>
+        <ListBox Name="LsbAchternamen" Grid.Column="1" Margin="10" FontSize="15"/>
+        <Button Name="BtnLeesBestand" Content="Lees Bestand" Margin="10" FontSize="15" Grid.Row="1" Click="BtnLeesBestand_Click"/>
+        <Button Name="BtnOpslaanBestand" Content="Opslaan Bestand" Margin="10" FontSize="15" Grid.Row="1" Grid.Column="1" Click="BtnOpslaanBestand_Click"/>
+        <Button Name="BtnVoegToe" IsDefault="True" Content="Voeg Toe" Margin="10" FontSize="15" Grid.Row="1" Grid.Column="2" Click="BtnVoegToe_Click"/>
+        <TextBox Name="TxtVoornaam" Grid.Row="2" FontSize="15" Margin="10" />
+        <TextBox Name="TxtAchternaam" Grid.Row="2" Grid.Column="1" FontSize="15" Margin="10"/>
+        <TextBlock Text="Voornaam - Achternaam" Grid.Row="2" Grid.Column="2" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="center"/>
+    </Grid>
+</Window>

@@ -1,0 +1,15 @@
+﻿<Window x:Class="Still_Dunno_What_This_will_be.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Still_Dunno_What_This_will_be" xmlns:gameenginelib="clr-namespace:GameEngineLib;assembly=GameEngineLib"
+        mc:Ignorable="d"
+        Title="Something" Height="450" Width="800">
+    <Canvas Name="MainCanvas">
+        <Label Name="LblWelcome" Content="Okey so i first had to think about what i wanted to do&#xD;&#xA;now i realise i'm going to let YOU make the game because &#xD;&#xA;well i'm kind off out of insperation" FontSize="24" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="83" Canvas.Top="45"/>
+        <Button Name="BtnStart" Content="Start" Canvas.Left="284" Canvas.Top="198" FontSize="24" Height="62" Width="232" Click="BtnStart_Click" Background="{x:Null}" Foreground="#FFC15050" FontFamily="Consolas" FontWeight="ExtraBlack" BorderBrush="#FFF14F4F" BorderThickness="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Name="BtnSettings" Content="Settings" Canvas.Left="284" Canvas.Top="264" FontSize="24" Height="62" Width="232" Click="BtnSettings_Click" Background="{x:Null}" Foreground="#FFC15050" FontFamily="Consolas" FontWeight="ExtraBlack" BorderBrush="#FFF14F4F" BorderThickness="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Button Name="BtnCreateLevel" Content="Create Level" Canvas.Left="284" Canvas.Top="332" FontSize="24" Height="62" Width="232" Click="BtnCreateLevel_Click" Background="{x:Null}" Foreground="#FFC15050" FontFamily="Consolas" FontWeight="ExtraBlack" BorderBrush="#FFF14F4F" BorderThickness="5,5,5,5" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+    </Canvas>
+</Window>

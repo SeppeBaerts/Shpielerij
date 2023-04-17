@@ -1,0 +1,29 @@
+﻿<Window x:Class="Still_Dunno_What_This_will_be.CreateGameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Still_Dunno_What_This_will_be"
+        mc:Ignorable="d"
+        Title="Create Game Window" Height="450" Width="800" Closed="Window_Closed" WindowState="Maximized" >
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" FontSize="16">
+            <MenuItem Header="CreateObjects">
+                <MenuItem Header="Create Circle" Name="MnuCreateCircle" Click="MnuCreateCircle_Click"/>
+                <MenuItem Header="Create Rectangle" Name="MnuCreateRectangle" Click="MnuCreateRectangle_Click"/>
+                <MenuItem Header="Create Endpoint" Name="MnuEndpoint" Click="MnuEndpoint_Click"/>
+                <MenuItem Header="Create Player" Name="MnuCreatePlayer" Click="MnuCreatePlayer_Click"/>
+            </MenuItem>
+            <MenuItem Header="Save Game" Name="MnuSaveGame" Click="MnuSaveGame_Click"/>
+            <MenuItem Header="Test Game" Name="MnuTestGame" Click="MnuTestGame_Click"/>
+            <MenuItem Header="Open Save File" Name="MnuOpenSaveFIle" Click="MnuOpenSaveFIle_Click"/>
+            <MenuItem Header="Property's" Click="Button_Click"/>
+            <MenuItem Header="Dev Testing" Name="MnuDevTesting" IsCheckable="True" Checked="MnuDevTesting_Checked" Unchecked="MnuDevTesting_Checked"/>
+        </Menu>
+        <StackPanel Background="MidnightBlue" Name="StackProp" DockPanel.Dock="Left" Visibility="Visible" MinWidth="155">
+            <Button Content="Collapse" FontSize="15" Click="Button_Click"/>
+        </StackPanel>
+        <Canvas Name="GameCanvas" MouseDown="GameCanvas_MouseDown" Background="Transparent">
+        </Canvas>
+    </DockPanel>
+</Window>

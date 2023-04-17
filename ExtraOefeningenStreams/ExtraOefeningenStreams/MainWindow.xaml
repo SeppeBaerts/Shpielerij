@@ -1,0 +1,19 @@
+﻿<Window x:Class="ExtraOefeningenStreams.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExtraOefeningenStreams"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <WrapPanel>
+        <Button Name="BtnOef1" Content="Oefening 1" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef2" Content="Oefening 2" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef3" Content="Oefening 3" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef4" Content="Oefening 4" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef5" Content="Oefening 5" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef6" Content="Oefening 6" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef7" Content="Oefening 7" FontSize="55" Click="StartOef_Click"/>
+        <Button Name="BtnOef8" Content="Oefening 8" FontSize="55" Click="StartOef_Click"/>
+    </WrapPanel>
+</Window>
