@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Maui_TryOut.MainPage">
+    <Grid RowDefinitions="50, *">
+        <Button Text="Load Content"
+                Clicked="Button_Clicked"/>
+        <ListView
+        x:Name="LstHouses" Grid.Row="1"
+            HasUnevenRows="True"
+            >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="20"
+                            ColumnDefinitions="100, *"
+                            RowDefinitions="Auto, Auto, Auto, Auto"
+                              >
+                            <Image Source="https://www.dropbox.com/s/61h5eurwjnuzk7b/villa.jpg?dl=0" Grid.RowSpan="3" Margin="5"/>
+                            <Label Text="{Binding HouseAdress}" Grid.Column="1"/>
+                            <VerticalStackLayout Grid.Row="1" Grid.Column="1"
+                                                 BackgroundColor="#73000000"
+                                                 Padding="15">
+                                <HorizontalStackLayout>
+                                    <Label Text="Rooms:" 
+                                       Margin="0,0,12,0" />
+                                    <Label Text="{Binding AmountRooms}"/>
+                                    <Label Text="Floors:" 
+                                       Margin="25,0,12,0"/>
+                                    <Label Text="{Binding Floors}"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="House surface:" 
+                                       Margin="0,0,12,0" />
+                                    <Label Text="{Binding HouseSurface}"/>
+                                    <Label Text="m²"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <Label Text="Garden surface:" 
+                                       Margin="0,0,12,0" />
+                                    <Label Text="{Binding GardenSurface}"/>
+                                    <Label Text="m²"/>
+                                </HorizontalStackLayout>
+                            </VerticalStackLayout>
+                            
+                            <Label Text="{Binding Price}" 
+                                   TextDecorations="Underline" 
+                                   FontAttributes="Bold" 
+                                   Grid.Column="1" Grid.Row="3" 
+                                   HorizontalOptions="End" 
+                                   FontSize="18"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
+
+</ContentPage>

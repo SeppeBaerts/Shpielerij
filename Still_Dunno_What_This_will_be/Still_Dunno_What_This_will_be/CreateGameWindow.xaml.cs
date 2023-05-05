@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -43,17 +44,29 @@ namespace Still_Dunno_What_This_will_be
         {
             GameItemCircle circle = new GameItemCircle(55, 55, 25, 25, true);
             circle.Parent = GameCanvas;
-            //GetOptions();
-            //if (HasNumbers())
-            //{
-
-            //}
         }
 
         private void MnuEndpoint_Click(object sender, RoutedEventArgs e)
         {
             GameItemEndPoint endPoint = new GameItemEndPoint(55, 55, 150, 50);
             endPoint.Parent = GameCanvas;
+        }
+
+        private void MnuCreatePlayer_Click(object sender, RoutedEventArgs e)
+        {
+            Player player = new Player(55, 55, 50, 50, 5, false);
+            player.Parent = GameCanvas;
+        }
+
+        private void MnuCreateRectangle_Click(object sender, RoutedEventArgs e)
+        {
+            GameItemRectangle rectangle = new GameItemRectangle(15, 15, 150, 20, true); ;
+            rectangle.Parent = GameCanvas;
+        }
+        private void MnuCreateDead_Click(object sender, RoutedEventArgs e)
+        {
+            GameItemGameOver gameOver = new GameItemGameOver(15, 15, 500, 20);
+            gameOver.Parent = GameCanvas;
         }
 
         private void MnuSaveGame_Click(object sender, RoutedEventArgs e)
@@ -68,37 +81,13 @@ namespace Still_Dunno_What_This_will_be
             }
         }
 
-        private void MnuCreatePlayer_Click(object sender, RoutedEventArgs e)
-        {
-            Player player = new Player(55, 55, 50, 50, 5, false);
-            player.Parent = GameCanvas;
-            //GetOptions(new string[] { ";;Has Health? " });
-            //if (HasNumbers(5))
-            //{
-
-            //TemporaryStorage.Items.Add(player);
-            //}
-        }
-
-        private void MnuCreateRectangle_Click(object sender, RoutedEventArgs e)
-        {
-            GameItemRectangle rectangle = new GameItemRectangle(15, 15, 150, 20, true); ;
-            rectangle.Parent = GameCanvas;
-            //GetOptions();
-            //if (HasNumbers())
-            //{
-
-            //    //TemporaryStorage.Items.Add(rectangle);
-            //}
-        }
-
         private void MnuTestGame_Click(object sender, RoutedEventArgs e)
         {
             using (StreamWriter sw = new StreamWriter(fileName, false))
                 foreach (GameItem gi in TemporaryStorage.Items)
                     sw.WriteLine(gi.ToString());
             TemporaryStorage.Clear();
-            GameWindow gw = new GameWindow(new FileStream(fileName, FileMode.Open));
+            GameWindow gw = new GameWindow(fileName);
             gw.ShowDialog();
             TemporaryStorage.Revert();
         }
@@ -121,6 +110,7 @@ namespace Still_Dunno_What_This_will_be
             }
         }
         #endregion
+        #region ChangingProperty's
         private void ChangePropertys()
         {
             propObject = SelectedObject.GetSelectedGameItem();
@@ -130,6 +120,9 @@ namespace Still_Dunno_What_This_will_be
             {
                 for (int i = 0; i < propNames.Count(); i++)
                 {
+                    Button btn = new Button();
+                    btn.IsDefault = true;
+                    btn.Click += Btn_Click;
                     UIElement ui = new UIElement();
                     WrapPanel wrap = new WrapPanel();
                     StackProp.Children.Add(wrap);
@@ -188,8 +181,29 @@ namespace Still_Dunno_What_This_will_be
                     ui.LostFocus += Ui_LostFocus;
                     wrap.Children.Add(ui);
                 }
+                if (propObject is GameItemEndPoint end)
+                {
+                    Button btn = new Button
+                    {
+                        Content = "Add next Level",
+                        FontSize = 18,
+                        Padding = new Thickness(5),
+                    };
+                    StackProp.Children.Add(btn);
+                    btn.Click += Btn_Click;
+                }
             }
             else throw new ArgumentOutOfRangeException("2 Lists must be the same length");
+        }
+
+        private void Btn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog
+            {
+                Filter = "Text Files(*.txt)|*.txt",
+            };
+            if ((bool)ofd.ShowDialog())
+                ((GameItemEndPoint)propObject).NextLevel = ofd.FileName;
         }
 
         private void Ui_Checked(object sender, RoutedEventArgs e)
@@ -204,8 +218,11 @@ namespace Still_Dunno_What_This_will_be
             else if (e.Key == Key.Up)
                 ((TextBox)sender).Text = (double.Parse(((TextBox)sender).Text) + 1).ToString();
             else if (e.Key == Key.Enter)
+            {
+                Keyboard.ClearFocus();
                 ValueDirector(sender);
-            if (!(e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9|| e.Key == Key.Subtract|| e.Key == Key.OemMinus))
+            }
+            if (!(e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9|| e.Key == Key.Subtract|| e.Key == Key.OemMinus||e.Key == Key.Tab))
                 e.Handled = true;
         }
 
@@ -246,6 +263,7 @@ namespace Still_Dunno_What_This_will_be
             }
 
         }
+        #endregion
 
         private bool HasNumbers(int expectedAnswers = 4)
         {
@@ -290,7 +308,6 @@ namespace Still_Dunno_What_This_will_be
         private void LoadTemplate(string filePath)
         {
             GameCanvas.Children.Clear();
-            TemporaryStorage.GameRects.Clear();
             TemporaryStorage.Items.Clear();
             string[] objectConcepts;
             using (StreamReader sr = new StreamReader(filePath))
@@ -305,6 +322,7 @@ namespace Still_Dunno_What_This_will_be
                     int movementSpeed = int.Parse(objectConcepts[5]);
                     bool hasCollisionDetection = objectConcepts[6].Trim('=') == "1";
                     int movementAmount = int.Parse(objectConcepts[7]);
+
                     GameItem gI = new GameItem();
                     if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection);
                     else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, movementSpeed, movementAmount);
@@ -330,5 +348,7 @@ namespace Still_Dunno_What_This_will_be
             LevelController.IsCreateWindow = false;
             LevelController.ShowDevOutlines = false;
         }
+
+
     }
 }

@@ -13,6 +13,7 @@
                 <MenuItem Header="Create Rectangle" Name="MnuCreateRectangle" Click="MnuCreateRectangle_Click"/>
                 <MenuItem Header="Create Endpoint" Name="MnuEndpoint" Click="MnuEndpoint_Click"/>
                 <MenuItem Header="Create Player" Name="MnuCreatePlayer" Click="MnuCreatePlayer_Click"/>
+                <MenuItem Header="Create Dead block" Name="MnuCreateDead" Click="MnuCreateDead_Click"/>
             </MenuItem>
             <MenuItem Header="Save Game" Name="MnuSaveGame" Click="MnuSaveGame_Click"/>
             <MenuItem Header="Test Game" Name="MnuTestGame" Click="MnuTestGame_Click"/>

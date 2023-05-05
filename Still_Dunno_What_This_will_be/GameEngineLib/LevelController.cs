@@ -66,9 +66,10 @@ namespace GameEngineLib
                 }
             }
             return canva;
-            //==Bool 1=true, 0=false;
+            //==Bool:  1=true, 0=false;
+            //XX;LocationX;LocationY;Height;Width; --> GameItemGameOver
             //OO;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> circle
-            //EE;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> EndPoint
+            //EE;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> EndRect
             //--;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> Rectanngle
             //PP;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;==HasHealth --> PlayerController
 

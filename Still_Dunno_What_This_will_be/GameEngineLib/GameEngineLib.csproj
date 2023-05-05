@@ -45,7 +45,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameItem.cs" />
+    <Compile Include="GameItemAnimation.cs" />
     <Compile Include="GameItemEndPoint.cs" />
+    <Compile Include="GameItemGameOver.cs" />
     <Compile Include="GameItemRectangle.cs" />
     <Compile Include="GameItemCircle.cs" />
     <Compile Include="LevelController.cs" />

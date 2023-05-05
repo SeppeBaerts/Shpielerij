@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Media3D;
 
 namespace GameEngineLib
 {
@@ -16,9 +18,14 @@ namespace GameEngineLib
         public static bool PlayerMoves { get; set; } = true;
         public static List<int> Antwoorden { get; set; }
         public static List<GameItem> Items = new List<GameItem>();
-        public static Rect EndPoint;
+        public static GameItemEndPoint BigEnd;
+        public static Rect EndRect;
+        public static Rect GameOverRect;
         public static bool HasCompleted;
-        public static List<Rect> GameRects = new List<Rect>();
+        public static bool HasDied;
+        public static char BlockedLR { get; private set; } = '\0';
+        public static char BlockedUD { get; private set; } = '\0';
+        //Tells the GameWindow which direction is Getting blocked. 
         public static bool ToBool(int itemIndex)
         {
             return Antwoorden[itemIndex] == -1;
@@ -33,23 +40,50 @@ namespace GameEngineLib
         }
         public static bool HasCollided(Rect detectableItem)
         {
-            if (EndPoint.IntersectsWith(detectableItem))
+            if (EndRect.IntersectsWith(detectableItem))
             {
                 HasCompleted = true;
+                return true;
+            }
+            else if (GameOverRect.IntersectsWith(detectableItem))
+            {
+                HasDied = true;
                 return true;
             }
             foreach (GameItem item in Items)
             {
                 if (!(item is Player) && item.OutlineRect.IntersectsWith(detectableItem))
+                {
+                    GetCollision(detectableItem, item.OutlineRect);
                     return true;
-
+                }
             }
-            //foreach (Rect rect in GameRects)
-            //{
-            //    if (rect != detectableItem && rect.IntersectsWith(detectableItem))
-            //    { return true; }
-            //}
+            BlockedLR = BlockedUD = '0';
             return false;
+        }
+        private static void GetCollision(Rect rect1, Rect rect2)
+        {
+            BlockedLR = BlockedUD = '0';
+            if (rect1.Right >= rect2.Left && rect1.Right <= rect2.Left+15)
+            {
+                // The intersection is from the left
+                BlockedLR = 'R';
+            }
+            else if (rect1.Left >= rect2.Right - 15 && rect1.Left <= rect2.Right +15)
+            {
+                // The intersection is from the right
+                BlockedLR = 'L';
+            }
+            if (rect1.Bottom >= rect2.Top && rect1.Bottom <= rect2.Top +15)
+            {
+                // The intersection is from the Top
+                BlockedUD = 'D';
+            }
+            else if (rect1.Top >= rect2.Bottom - 15 && rect1.Top <= rect2.Bottom+15)
+            {
+                // The intersection is from the Bottom
+                BlockedUD = 'U';
+            }
         }
         public static void Clear()
         {
@@ -67,7 +101,8 @@ namespace GameEngineLib
         public static void Move()
         {
             foreach (GameItem item in Items)
-                item.MoveItem();
+                if (item.MovingAmount != 0)
+                    item.MoveItem();
         }
     }
 }

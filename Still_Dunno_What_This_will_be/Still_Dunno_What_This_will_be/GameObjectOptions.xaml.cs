@@ -45,7 +45,6 @@ namespace Still_Dunno_What_This_will_be
                         FontSize = 18,
                     };
                 }
-
                 wrap.Children.Add(lbl);
                 wrap.Children.Add(el);
             }
@@ -68,7 +67,6 @@ namespace Still_Dunno_What_This_will_be
                     else if (wrap.Children[1] is CheckBox check)
                         answers.Add((bool)check.IsChecked ? -1 : -2);
                 }
-
             }
             TemporaryStorage.Antwoorden = answers;
             Close();

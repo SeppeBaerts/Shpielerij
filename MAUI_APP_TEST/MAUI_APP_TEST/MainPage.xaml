@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MAUI_APP_TEST.MainPage">
+    
+    <Grid RowDefinitions="100, Auto, *"
+          ColumnDefinitions=".75*, .25*"
+          Padding="10">
+        <Image Grid.ColumnSpan="2" 
+               Source="dotnet_bot.png"
+               BackgroundColor="Transparent"/>
+
+        <Entry x:Name="EnTask" 
+               Placeholder="Enter task"
+               Grid.Row="1"/>
+
+        <Button Text="Add"
+                Clicked="MyButton_Clicked"
+                Grid.Row="1"
+                Grid.Column="1"
+                x:Name="MyButton"/>
+
+        <ListView Grid.Row="3" 
+                  Grid.ColumnSpan="2" 
+                  x:Name="MainList" 
+                  SeparatorColor="White"
+                  HasUnevenRows="True">
+            <!--THIS WORKS, DO NOT CHANGE UNLESS SAVED-->
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <!--<Grid RowDefinitions=".75*, Auto">
+							<Grid.GestureRecognizers>
+								<SwipeGestureRecognizer Direction="Left"
+                                    Swiped="SwipeGestureRecognizer_Swiped_1"/>
+                                <SwipeGestureRecognizer Direction="Right"
+                                    Swiped="SwipeGestureRecognizer_Swiped_1"/>
+                            </Grid.GestureRecognizers>
+                            
+                            <Image Background="red" Grid.RowSpan="2" HeightRequest="250"/>
+                            <Label Text="{Binding Text}"
+                                   FontSize="18"
+                                   Grid.Row="1"/>
+                        </Grid>-->
+                        <SwipeView>
+                            <SwipeView.RightItems>
+                                <SwipeItems>
+                                    <SwipeItem Text="Play sound"
+                                           Clicked="SwipeItem_Clicked"
+                                           BackgroundColor="White"
+                                               BindingContext="{Binding .}"/>
+                                </SwipeItems>
+                            </SwipeView.RightItems>
+                            <Grid RowDefinitions="Auto, Auto, Auto"
+                              ColumnDefinitions="100, *, 50"
+                              Padding="10">
+                                <Image Grid.RowSpan="2" Source="dotnet_bot.png" Margin="10, 0"/>
+                                <Label Text="{Binding Text}"
+                                       Padding="5"
+                                   FontSize="18"
+                                   Grid.Column="1"
+                                   />
+                                <Button Grid.Row="1" Grid.Column="1"
+                                        Text="Play sound"
+                                        />
+                                <Label Grid.Row="1" Grid.Column="2"
+                                Text="{Binding Price}"
+                                       FontSize="29"
+                                       HorizontalOptions="End"
+                                       VerticalOptions="End"/>
+                            </Grid>
+                        </SwipeView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</ContentPage>

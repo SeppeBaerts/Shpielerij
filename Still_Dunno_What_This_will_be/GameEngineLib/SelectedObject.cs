@@ -9,7 +9,8 @@ namespace GameEngineLib
     public static class SelectedObject
     {
         static GameItem gameObject;
-        public static bool JustChanged {  get; set; }
+        public static bool JustChanged {  get; 
+            set; }
 
         public static void ChangeGameItem(GameItem item)
         {

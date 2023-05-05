@@ -12,7 +12,7 @@ using System.Windows.Shapes;
 
 namespace GameEngineLib
 {
-    public class GameItem
+    public class GameItem 
     {
         private readonly string[] contextOptions =
         {
@@ -98,12 +98,8 @@ namespace GameEngineLib
                             Height = Height,
                             Location = new Point(Left, Top),
                         };
-                        TemporaryStorage.GameRects.Add(OutlineRect);
                     }
-                    else
-                        TemporaryStorage.GameRects.Remove(OutlineRect);
                 }
-
             }
         }
         internal bool isGoingLeft;
@@ -151,7 +147,6 @@ namespace GameEngineLib
                     Height = height,
                     Location = new Point(left, top),
                 };
-                TemporaryStorage.GameRects.Add(OutlineRect);
             }
             TemporaryStorage.Items.Add(this);
         }
@@ -164,7 +159,6 @@ namespace GameEngineLib
         private void Del_Click(object sender, RoutedEventArgs e)
         {
             TemporaryStorage.Items.Remove(this);
-            TemporaryStorage.GameRects.Remove(OutlineRect);
             Parent.Children.Remove(ObjectElement);
         }
 
@@ -194,12 +188,8 @@ namespace GameEngineLib
         {
             if (HasCollisionDetection && OutlineRect != null)
             {
-                int r = 0;
-                if (!(this is Player)) TemporaryStorage.GameRects.Remove(OutlineRect);
                 OutlineRect.Location = new Point(ActualLeft, ActualTop);
-                if (!(this is Player) && r != -1)
-                    TemporaryStorage.GameRects.Add(OutlineRect);
-                if (this is GameItemEndPoint) TemporaryStorage.EndPoint = OutlineRect; 
+                if (this is GameItemEndPoint) TemporaryStorage.EndRect = OutlineRect; 
             }
         }
 

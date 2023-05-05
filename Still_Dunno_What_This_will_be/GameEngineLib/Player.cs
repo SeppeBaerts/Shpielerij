@@ -36,7 +36,6 @@ namespace GameEngineLib
                 Fill = Brushes.Black,
                 ContextMenu = CMenu,
             };
-            TemporaryStorage.GameRects.Remove(TemporaryStorage.GameRects.Last());
             isRealGame = isActive;
             ObjectElement.MouseDown += ObjectElement_MouseDown;
         }
@@ -51,18 +50,21 @@ namespace GameEngineLib
         /// Only call this method in a dispatcher timer
         /// </summary>
         public void MovePlayer()
-        { 
+        {
+            TemporaryStorage.HasCollided(OutlineRect);
+            char blockedUD = TemporaryStorage.BlockedUD;
+            char blockedLR = TemporaryStorage.BlockedLR;
             if (TemporaryStorage.PlayerMoves)
             {
-                if (Direction == 'L') Canvas.SetLeft(ObjectElement, Canvas.GetLeft(ObjectElement) - MovementSpeed);
-                else if (Direction == 'R') Canvas.SetLeft(ObjectElement, Canvas.GetLeft(ObjectElement) + MovementSpeed);
-                else if (Direction == 'D') Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) - MovementSpeed);
-                else if (Direction == 'U') Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) + MovementSpeed);
+                if (Direction == 'L' && blockedLR != 'L') Canvas.SetLeft(ObjectElement, Canvas.GetLeft(ObjectElement) - MovementSpeed);
+                else if (Direction == 'R' && blockedLR !='R') Canvas.SetLeft(ObjectElement, Canvas.GetLeft(ObjectElement) + MovementSpeed);
+                else if (Direction == 'D' && blockedUD != 'D') Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) + MovementSpeed);
+                else if (Direction == 'U' && blockedUD != 'U') Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) - MovementSpeed);
             }
             else
             {
-                if (Direction == 'L') TemporaryStorage.UpdateLayout(MovementSpeed);
-                else if (Direction == 'R') TemporaryStorage.UpdateLayout(-MovementSpeed);
+                if (Direction == 'L' && blockedLR != 'L') TemporaryStorage.UpdateLayout(MovementSpeed);
+                else if (Direction == 'R' && blockedLR != 'R') TemporaryStorage.UpdateLayout(-MovementSpeed);
             }
             if (isJumping && jumpAmount <= 0)
             {
@@ -71,13 +73,16 @@ namespace GameEngineLib
                 else
                     isJumping = false;
             }
-            if (HasGravity && jumpAmount <= 0 && Canvas.GetTop(ObjectElement) <= Parent.ActualHeight - Height && !TemporaryStorage.HasCollided(OutlineRect))
+            if (HasGravity && jumpAmount <= 0 && Canvas.GetTop(ObjectElement) <= Parent.ActualHeight - Height && blockedUD != 'D')
             {
                 Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) + MovementSpeed);
             }
             else if (HasGravity && jumpAmount > 0)
             {
-                Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) - MovementSpeed);
+                if (blockedUD != 'U')
+                    Canvas.SetTop(ObjectElement, Canvas.GetTop(ObjectElement) - MovementSpeed);
+                else
+                    jumpAmount = 0;
                 jumpAmount--;
             }
             UpdateRect();

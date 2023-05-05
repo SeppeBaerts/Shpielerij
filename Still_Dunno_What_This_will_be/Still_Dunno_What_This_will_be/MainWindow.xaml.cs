@@ -33,7 +33,7 @@ namespace Still_Dunno_What_This_will_be
             open.Filter = "Text File(*.txt)|*.txt";
             if ((bool)open.ShowDialog())
             {
-                GameWindow game = new GameWindow(new System.IO.FileStream(open.FileName, System.IO.FileMode.Open));
+                GameWindow game = new GameWindow(open.FileName);
                 game.ShowDialog();
             }
         }
