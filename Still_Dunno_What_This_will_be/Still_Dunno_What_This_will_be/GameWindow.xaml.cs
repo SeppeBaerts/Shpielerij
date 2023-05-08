@@ -1,6 +1,8 @@
 ﻿using GameEngineLib;
+using GameEngineLib.PowerUps;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -78,11 +80,16 @@ namespace Still_Dunno_What_This_will_be
                         player = new Player(left, top, width, height, movementSpeed, false); //De false nog aanpasbaar maken
                         player.Parent = GameCanvas;
                     }
+                    else if (objectConcepts[0] == "PUJB"){
+                        PowerJumpBoost pow = new PowerJumpBoost(left, top);
+                        pow.Parent = GameCanvas;
+                    }
 
                     if (!gI.IsEmpty)
                         gI.Parent = GameCanvas;
                 }
             }
+            TemporaryStorage.CurrentPlayer = player; 
             if (TemporaryStorage.GameOverRect.IsEmpty)
             {
                 GameItemGameOver killPlatForm = new GameItemGameOver(0, GameCanvas.ActualHeight, ((int)Math.Truncate(GameCanvas.ActualWidth)), 50);

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GameEngineLib.PowerUps;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -60,6 +61,10 @@ namespace GameEngineLib
                         player = new Player(left, top, width, height,movementSpeed, false); //De false nog aanpasbaar maken
                         player.Parent = canva;
                     }
+                    else if (objectConcepts[0].StartsWith("PUJB"))
+                    {
+                        PowerJumpBoost pow = new PowerJumpBoost(left, top);
+                    }
 
                     if (!gI.IsEmpty)
                         gI.Parent = canva;
@@ -72,6 +77,7 @@ namespace GameEngineLib
             //EE;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> EndRect
             //--;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> Rectanngle
             //PP;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;==HasHealth --> PlayerController
+            //PUJB;LocationX;LocationY;Height;Width;Movementspeed;==HasCollision --> Powerup JumpBoost
 
         }
     }

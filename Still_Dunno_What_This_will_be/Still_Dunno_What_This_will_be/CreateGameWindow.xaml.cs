@@ -1,4 +1,5 @@
 ﻿using GameEngineLib;
+using GameEngineLib.PowerUps;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ namespace Still_Dunno_What_This_will_be
         {
             //This is something that would say; create a circle, or i dunno what else
         }
+
         #region MenuItems
         private void MnuCreateCircle_Click(object sender, RoutedEventArgs e)
         {
@@ -67,6 +69,12 @@ namespace Still_Dunno_What_This_will_be
         {
             GameItemGameOver gameOver = new GameItemGameOver(15, 15, 500, 20);
             gameOver.Parent = GameCanvas;
+        }
+
+        private void MnuCreateJumpBoost_Click(object sender, RoutedEventArgs e)
+        {
+            PowerJumpBoost pow = new PowerJumpBoost(15, 15);
+            pow.Parent = GameCanvas;
         }
 
         private void MnuSaveGame_Click(object sender, RoutedEventArgs e)
@@ -109,6 +117,7 @@ namespace Still_Dunno_What_This_will_be
                 }
             }
         }
+
         #endregion
         #region ChangingProperty's
         private void ChangePropertys()
@@ -348,7 +357,6 @@ namespace Still_Dunno_What_This_will_be
             LevelController.IsCreateWindow = false;
             LevelController.ShowDevOutlines = false;
         }
-
 
     }
 }

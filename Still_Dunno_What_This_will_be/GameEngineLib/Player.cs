@@ -24,6 +24,7 @@ namespace GameEngineLib
         public int Health { get; set; }
         private bool isRealGame;
         private int jumpAmount;
+        internal int baseJumpAmount { get; set; } = 15;
         public Player(double left, double bottom, int width, int height, int movementSpeed, bool hasHealth, bool isActive = false) : base(left, bottom, width, height, movementSpeed)
         {
             HasHealth = hasHealth;
@@ -91,7 +92,7 @@ namespace GameEngineLib
         {
             if (!isJumping)
             {
-                jumpAmount = 15;
+                jumpAmount = baseJumpAmount;
                 isJumping = true;
             }
         }

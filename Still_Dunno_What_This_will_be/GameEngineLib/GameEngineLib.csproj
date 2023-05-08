@@ -53,6 +53,7 @@
     <Compile Include="LevelController.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PowerUp.cs" />
+    <Compile Include="PowerUps\PowerJumpBoost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectedObject.cs" />
     <Compile Include="TemporaryStorage.cs" />
