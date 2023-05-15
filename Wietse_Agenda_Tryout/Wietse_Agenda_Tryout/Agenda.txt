@@ -1,5 +1,5 @@
-StackMaandag;Maandag;;Test1;Dit is een test voor content 1;Test1;Dit is een test voor content 1;
-StackDinsdag;Dinsdag;;Test2;Dit is content voor Test2;Test2;;
-StackWoensdag;Woensdag;;Test3;;Test3;;
-StackDonderdag;Donderdag;;Test1;;Test1;;
-StackVrijdag;Vrijdag;;Test2;;Test2;;
+StackMaandag;Maandag;;
+StackDinsdag;Dinsdag;;
+StackWoensdag;Woensdag;;
+StackDonderdag;Donderdag;;
+StackVrijdag;Vrijdag;;

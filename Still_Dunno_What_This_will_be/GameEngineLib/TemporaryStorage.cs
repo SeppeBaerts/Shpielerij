@@ -55,18 +55,30 @@ namespace GameEngineLib
                 HasDied = true;
                 return true;
             }
-            foreach (GameItem item in Items)
+
+            var collissionItem = Items.Where(i => !(i is Player) && !(i is PowerUp) && i.OutlineRect.IntersectsWith(detectableItem)).FirstOrDefault();
+            var collissionPowerUps = Items.Where(i => i is PowerUp power && i.OutlineRect.IntersectsWith(detectableItem)).Select(i => (PowerUp)i);
+
+            foreach (var i in collissionPowerUps)
+                i.ActivateEffect(CurrentPlayer);
+            if (collissionItem != null)
             {
-                if (!(item is Player) && !(item is PowerUp) && item.OutlineRect.IntersectsWith(detectableItem))
-                {
-                    GetCollision(detectableItem, item.OutlineRect);
-                    return true;
-                }
-                else if (!(item is Player) && item is PowerUp pow && item.OutlineRect.IntersectsWith(detectableItem))
-                {
-                    pow.ActivateEffect(CurrentPlayer);
-                }
+                GetCollision(detectableItem, collissionItem.OutlineRect);
+                return true;
             }
+
+            //foreach (GameItem item in Items)
+            //{
+            //    if (!(item is Player) && !(item is PowerUp) && item.OutlineRect.IntersectsWith(detectableItem))
+            //    {
+            //        GetCollision(detectableItem, item.OutlineRect);
+            //        return true;
+            //    }
+            //    else if (item is PowerUp pow && item.OutlineRect.IntersectsWith(detectableItem))
+            //    {
+            //        pow.ActivateEffect(CurrentPlayer);
+            //    }
+            //}
             foreach (PowerUp pow in PowerUps)
             {
                 if (Items.Contains(pow))
