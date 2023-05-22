@@ -73,7 +73,7 @@ namespace Still_Dunno_What_This_will_be
                     bool canBePickedUp = objectConcepts.Count() > 8 && objectConcepts[0] == "OO" || objectConcepts[0] == "--" ? objectConcepts[8] == "1" : false;
                     GameItem gI = new GameItem();
                     if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection, canBePickedUp);
-                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, canBePickedUp, movementSpeed, movementAmount);
+                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, canBePickedUp, hasCollisionDetection, movementSpeed, movementAmount);
                     else if (objectConcepts[0] == "EE") gI = new GameItemEndPoint(left, top, width, height, hasCollisionDetection, movementSpeed, nextFile);
                     else if (objectConcepts[0] == "XX") gI = new GameItemGameOver(left, top, width, height);
                     else if (objectConcepts[0] == "PP")

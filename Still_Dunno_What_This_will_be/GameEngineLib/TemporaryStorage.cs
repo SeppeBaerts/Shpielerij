@@ -46,15 +46,19 @@ namespace GameEngineLib
         }
         public static void StartLifting()
         {
-            var collissionItem = Items.Where(i => !(i is Player) && !(i is PowerUp) && i.OutlineRect.IntersectsWith(CurrentPlayer.OutlineRect) && i.CanBePickedUp).FirstOrDefault();
-            if (collissionItem != null && PressingLiftKey && !CurrentPlayer.IsCarrying)
-                CurrentPlayer.StartCarryingObject(collissionItem);
+            if (PressingLiftKey)
+            {
+                var collissionItem = Items.Where(i => !(i is Player) && !(i is PowerUp) && i.OutlineRect.IntersectsWith(CurrentPlayer.OutlineRect) && i.CanBePickedUp).FirstOrDefault();
+                if (collissionItem != null && !CurrentPlayer.IsCarrying)
+                    CurrentPlayer.StartCarryingObject(collissionItem);
+            }
             else if (CurrentPlayer.IsCarrying && !PressingLiftKey)
                 CurrentPlayer.StopCarryingObject();
 
         }
         public static bool HasCollided(Rect detectableItem)
         {
+            StartLifting();
             if (EndRect.IntersectsWith(detectableItem))
             {
                 HasCompleted = true;
@@ -100,6 +104,7 @@ namespace GameEngineLib
         }
         private static void GetCollision(Rect rect1, Rect rect2)
         {
+            //not made for multiple intersections (this causes you to walk through movable objects
             BlockedLR = BlockedUD = '0';
             if (rect1.Right >= rect2.Left && rect1.Right <= rect2.Left+15)
             {

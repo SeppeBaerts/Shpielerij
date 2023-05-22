@@ -19,6 +19,7 @@ namespace GameEngineLib
             "Height",
             "Width",
             "(bool)Collision",
+            "(bool)Pickable"
         };
         private bool isChanging;
         private Canvas parent;
@@ -228,6 +229,7 @@ namespace GameEngineLib
                 case "height": Height = (int)value; break;
                 case "width": Width = (int)value; break;
                 case "collision": HasCollisionDetection = (bool)value; break;
+                case "pickable": CanBePickedUp = (bool)value; break;
             }
         }
 
