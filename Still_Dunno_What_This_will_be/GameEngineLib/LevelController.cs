@@ -43,6 +43,7 @@ namespace GameEngineLib
             string[] objectConcepts;
             using (StreamReader sr = new StreamReader(fs))
             {
+                ///wordt niet meer gebruikt.
                 while (!sr.EndOfStream)
                 {
                     objectConcepts = sr.ReadLine().Split(';');
@@ -54,7 +55,7 @@ namespace GameEngineLib
                     bool hasCollisionDetection = objectConcepts[6].Trim('=') == "1";
                     GameItem gI = new GameItem();
                     if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection);
-                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, movementSpeed);
+                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, false, movementSpeed);
                     else if (objectConcepts[0] == "EE") gI = new GameItemEndPoint(left, top, width, height, hasCollisionDetection, movementSpeed);
                     else if (objectConcepts[0] == "PP")
                     {
@@ -73,10 +74,10 @@ namespace GameEngineLib
             return canva;
             //==Bool:  1=true, 0=false;
             //XX;LocationX;LocationY;Height;Width; --> GameItemGameOver
-            //OO;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> circle
-            //EE;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> EndRect
-            //--;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision --> Rectanngle
-            //PP;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;==HasHealth --> PlayerController
+            //OO;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;MovingAmount;==CanBePickedUp --> circle
+            //EE;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;MovingAmount;==CanBePickedUp --> EndRect
+            //--;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;MovingAmount;==CanBePickedUp --> Rectanngle
+            //PP;LocationX;LocationY;Height;Width;MovementSpeed;==HasCollision;MovingAmount;==CanBePickedUp;==HasHealth --> PlayerController
             //PUJB;LocationX;LocationY;Height;Width;Movementspeed;==HasCollision --> Powerup JumpBoost
 
         }

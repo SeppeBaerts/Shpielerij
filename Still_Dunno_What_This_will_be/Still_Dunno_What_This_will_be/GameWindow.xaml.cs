@@ -70,9 +70,10 @@ namespace Still_Dunno_What_This_will_be
                     bool hasCollisionDetection = objectConcepts.Count() > 6? objectConcepts[6].Trim('=') == "1" : false;
                     int movementAmount = objectConcepts.Count() > 7 ? int.Parse(objectConcepts[7]) : 0;
                     string nextFile = objectConcepts.Count() > 8 && objectConcepts[0] == "EE"? objectConcepts[8] : null;
+                    bool canBePickedUp = objectConcepts.Count() > 8 && objectConcepts[0] == "OO" || objectConcepts[0] == "--" ? objectConcepts[8] == "1" : false;
                     GameItem gI = new GameItem();
-                    if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection);
-                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, movementSpeed, movementAmount);
+                    if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection, canBePickedUp);
+                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, canBePickedUp, movementSpeed, movementAmount);
                     else if (objectConcepts[0] == "EE") gI = new GameItemEndPoint(left, top, width, height, hasCollisionDetection, movementSpeed, nextFile);
                     else if (objectConcepts[0] == "XX") gI = new GameItemGameOver(left, top, width, height);
                     else if (objectConcepts[0] == "PP")
@@ -198,12 +199,15 @@ namespace Still_Dunno_What_This_will_be
             else if (e.Key == Key.Down) player.Direction = 'D';
             else if (e.Key == Key.Space) player.Jump();
             else if (e.Key == Key.M) TemporaryStorage.PlayerMoves = !TemporaryStorage.PlayerMoves;
+            else if (e.Key == Key.LeftShift) TemporaryStorage.PressingLiftKey = true;
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
             if (IsCurrentDirection(e.Key))
                 player.Direction = '0';
+            if (e.Key == Key.LeftShift)
+                TemporaryStorage.PressingLiftKey = false;
         }
         private bool IsCurrentDirection(Key key)
         {

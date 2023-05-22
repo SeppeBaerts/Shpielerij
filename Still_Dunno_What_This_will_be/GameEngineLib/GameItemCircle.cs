@@ -12,7 +12,7 @@ namespace GameEngineLib
 {
     public class GameItemCircle : GameItem
     {
-        public GameItemCircle(double left, double top, int width, int height, bool colDetection = true) : base(left, top, width, height, 5, colDetection)
+        public GameItemCircle(double left, double top, int width, int height,bool canBePickedUp = false, bool colDetection = true) : base(left, top, width, height,canBePickedUp, 5, colDetection)
         {
             ObjectElement = new Ellipse
             {

@@ -41,10 +41,18 @@ namespace ClassLibTeam02.Business.Entities
         /// </summary>
         public double Price { get; set; }
         #endregion
-        private string imageSource;
-        private string audioSource;
-        public string ImageFilePath { get; set; }
-        public string AudioFilePath { get; set; }
+        internal string imageSource;
+        internal string audioSource;
+        public string ImageFilePath { 
+            get { return $"{imageSource}"; }
+            //get { return $"../Resources/Images/{imageSource}"; }
+            set { imageSource = value; }
+        }
+        public string AudioFilePath {
+            get { return $"{audioSource}"; }
+            //get { return $"../Resources/Sounds/{audioSource}"; }
+            set { audioSource = value; }
+        }
         public double? GardenSurface { get; set; }
         public int CreationYear { get; set; }
         public House(int houseId, string street,string houseNumber
@@ -64,26 +72,10 @@ namespace ClassLibTeam02.Business.Entities
             CreationYear = creationYear;
             ImageFilePath = imageFilePath;
             AudioFilePath = audioFilePath;
-            //GetImageSource();
         }
         public House()
         {
 
-        }
-        async public void GetImageSource()
-        {
-            DropboxClient dbx = new DropboxClient("sl.Bdr2YHnmpBDxZ5g4Z-uBCt_a4aZrVhC0kckEz4bDMym1O-jt2nczYgsKM4ASPz38x8UbJNSsi71d0TtQHA8akUEEMv_wjr4k4DVngawAbHcRP8nQjC4uUO9afV9hNphw9zkPplI0e5hP");
-            using (var response = await dbx.Files.DownloadAsync($"{ImageFilePath}"))
-            {
-                try
-                {
-                    imageSource = await response.GetContentAsStringAsync();
-                }
-                catch
-                {
-
-                }
-            }
         }
 
         public byte ConvertHouseType()

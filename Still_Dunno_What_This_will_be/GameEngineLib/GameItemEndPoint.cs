@@ -11,7 +11,7 @@ namespace GameEngineLib
 {
     public class GameItemEndPoint : GameItemRectangle
     {
-        public GameItemEndPoint(double left, double top, int width, int height, bool colDetection = true, int movementSpeed = 5, string nextLevel = "") : base(left, top, width, height, colDetection, movementSpeed)
+        public GameItemEndPoint(double left, double top, int width, int height, bool colDetection = true, int movementSpeed = 5, string nextLevel = "") : base(left, top, width, height, false, colDetection, movementSpeed)
         {
             ((Shape)ObjectElement).Fill = Brushes.Green;
             TemporaryStorage.EndRect = OutlineRect;

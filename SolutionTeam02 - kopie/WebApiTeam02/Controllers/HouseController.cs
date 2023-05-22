@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using WebApiTeam02.Models;
 
 namespace WebApiTeam02.Controllers
 {

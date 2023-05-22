@@ -23,9 +23,11 @@ namespace GameEngineLib
         public bool IsDead { get; set; }
         public int Health { get; set; }
         private bool isRealGame;
+        private GameItem CarryingObject { get; set; }
+        public bool IsCarrying => CarryingObject != null;
         private int jumpAmount;
         internal int baseJumpAmount { get; set; } = 15;
-        public Player(double left, double bottom, int width, int height, int movementSpeed, bool hasHealth, bool isActive = false) : base(left, bottom, width, height, movementSpeed)
+        public Player(double left, double bottom, int width, int height, int movementSpeed, bool hasHealth, bool isActive = false) : base(left, bottom, width, height, false, movementSpeed)
         {
             HasHealth = hasHealth;
             isRealGame = isActive; //Do i need this? bcz MovePlayer should only be called on when it's with a dispatcher timer? 
@@ -95,6 +97,16 @@ namespace GameEngineLib
                 jumpAmount = baseJumpAmount;
                 isJumping = true;
             }
+        }
+        public void StartCarryingObject(GameItem game)
+        {
+            CarryingObject = game;
+            //hier ook nog penalty shizzles aan toevoegen voor het dragen van een object
+            //zo ga je misschien trager lopen of iets dergelijks.
+        }
+        public void StopCarryingObject()
+        {
+            CarryingObject = null;
         }
         public override string ToString()
         {

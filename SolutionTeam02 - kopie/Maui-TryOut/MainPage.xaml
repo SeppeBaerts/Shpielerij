@@ -1,22 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Maui_TryOut.MainPage">
-    <Grid RowDefinitions="50, *">
+    <Grid RowDefinitions="50, *" x:Name="MainGrid">
+        <toolkit:MediaElement IsVisible="false" x:Name="MainMed" MediaFailed="MainMed_MediaFailed"/>
+        
         <Button Text="Load Content"
                 Clicked="Button_Clicked"/>
         <ListView
-        x:Name="LstHouses" Grid.Row="1"
+        x:Name="LstHouses" Grid.Row="2"
             HasUnevenRows="True"
-            >
+            ItemTapped="LstHouses_ItemTapped">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="20"
                             ColumnDefinitions="100, *"
-                            RowDefinitions="Auto, Auto, Auto, Auto"
-                              >
-                            <Image Source="https://www.dropbox.com/s/61h5eurwjnuzk7b/villa.jpg?dl=0" Grid.RowSpan="3" Margin="5"/>
+                            RowDefinitions="Auto, Auto, Auto, Auto">
+                            <Image Source="{Binding ImageFilePath}" Grid.RowSpan="3" Margin="5"/>
                             <Label Text="{Binding HouseAdress}" Grid.Column="1"/>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1"
                                                  BackgroundColor="#73000000"
@@ -42,7 +44,7 @@
                                     <Label Text="m²"/>
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
-                            
+
                             <Label Text="{Binding Price}" 
                                    TextDecorations="Underline" 
                                    FontAttributes="Bold" 

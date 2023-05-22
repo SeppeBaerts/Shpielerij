@@ -334,7 +334,7 @@ namespace Still_Dunno_What_This_will_be
 
                     GameItem gI = new GameItem();
                     if (objectConcepts[0] == "OO") gI = new GameItemCircle(left, top, width, height, hasCollisionDetection);
-                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection, movementSpeed, movementAmount);
+                    else if (objectConcepts[0] == "--") gI = new GameItemRectangle(left, top, width, height, hasCollisionDetection,false, movementSpeed, movementAmount);
                     else if (objectConcepts[0] == "EE") gI = new GameItemEndPoint(left, top, width, height, hasCollisionDetection, movementSpeed);
                     else if (objectConcepts[0] == "PP") gI = new Player(left, top, width, height,movementSpeed, false);
                     gI.Parent = GameCanvas;

@@ -106,7 +106,8 @@ namespace GameEngineLib
         public bool HasGravity { get; set; }
         public ContextMenu CMenu { get; set; }
         public Rect OutlineRect;
-        public GameItem(double left, double top, int width, int height, int movementSpeed = 5, bool hasCollisionDetection = true, int movementAmount = 0, bool hasGravity = true)
+        public bool CanBePickedUp;
+        public GameItem(double left, double top, int width, int height, bool canBePickedUp, int movementSpeed = 5, bool hasCollisionDetection = true, int movementAmount = 0, bool hasGravity = true)
         {
             Left = left;
             Top = top;
@@ -116,6 +117,7 @@ namespace GameEngineLib
             HasCollisionDetection = hasCollisionDetection;
             HasGravity = hasGravity;
             MovingAmount = movementAmount;
+            CanBePickedUp = canBePickedUp;
             CMenu = new ContextMenu();
 
             foreach (string st in contextOptions)
@@ -235,7 +237,7 @@ namespace GameEngineLib
         }
         public override string ToString()
         {
-            return $"{Canvas.GetLeft(ObjectElement)};{Canvas.GetTop(ObjectElement)};{((Shape)ObjectElement).ActualHeight};{((Shape)ObjectElement).ActualWidth};{MovementSpeed};=={(hasCollisionDetection? 1:0)};{MovingAmount}";
+            return $"{Canvas.GetLeft(ObjectElement)};{Canvas.GetTop(ObjectElement)};{((Shape)ObjectElement).ActualHeight};{((Shape)ObjectElement).ActualWidth};{MovementSpeed};=={(hasCollisionDetection? 1:0)};{MovingAmount};=={(CanBePickedUp? 1:0)}";
         }
         public virtual void ClearOutline()
         {

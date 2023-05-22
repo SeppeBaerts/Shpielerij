@@ -17,7 +17,7 @@ namespace GameEngineLib
         public bool isActive { get; set; }
         protected object oldValue;
         public Player AffectedPlayer { get; set; }
-        public PowerUp(Color col, double left, double top) : base(left, top, 20, 20, 0)
+        public PowerUp(Color col, double left, double top) : base(left, top, 20, 20, false, 0)
         {
             Width = Height = 20;
             ObjectElement = new Ellipse

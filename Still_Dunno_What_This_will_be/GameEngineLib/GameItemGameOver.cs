@@ -11,7 +11,7 @@ namespace GameEngineLib
 {
     public class GameItemGameOver : GameItem
     {
-        public GameItemGameOver(double left, double top, int width, int height) : base(left, top, width, height, 0, true)
+        public GameItemGameOver(double left, double top, int width, int height) : base(left, top, width, height, false, 0, true)
         {
             ObjectElement = new Rectangle
             {

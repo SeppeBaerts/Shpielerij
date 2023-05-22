@@ -43,7 +43,7 @@ namespace ClassLibTeam02.Data
         /// <param name="gardenSurface"> Can be null</param>
         /// <param name="price"></param>
         /// <returns></returns>
-        public InsertResult InsertHouse(string street, string homeNumber, string areaCode, int creationYear, byte houseType, short rooms, byte floors, short? floor, double houseSurface, double? gardenSurface, double price)
+        public InsertResult InsertHouse(string street, string homeNumber, string areaCode, int creationYear, byte houseType, short rooms, byte floors, short? floor, double houseSurface, double? gardenSurface, double price, string imageSource, string audioSource)
         {
             var result = new InsertResult();
             try
@@ -51,8 +51,8 @@ namespace ClassLibTeam02.Data
                 //SQL Command
                 StringBuilder insertQuery = new StringBuilder();
                 insertQuery.Append($"Insert INTO Houses ");
-                insertQuery.Append($"(Street, HomeNumber, AreaCode, CreationYear, HouseType, Rooms, Floors, Floor, HouseSurface, GardenSurface, Price) VALUES ");
-                insertQuery.Append($"(@Street, @HomeNumber, @AreaCode, @CreationYear, @HouseType, @Rooms, @Floors, @Floor, @HouseSurface, @GardenSurface, @Price); ");
+                insertQuery.Append($"(Street, HomeNumber, AreaCode, CreationYear, HouseType, Rooms, Floors, Floor, HouseSurface, GardenSurface, Price, ImageSource, AudioSource) VALUES ");
+                insertQuery.Append($"(@Street, @HomeNumber, @AreaCode, @CreationYear, @HouseType, @Rooms, @Floors, @Floor, @HouseSurface, @GardenSurface, @Price, @ImageSource, @AudioSource); ");
                 using (SqlCommand insertCommand = new SqlCommand(insertQuery.ToString()))
                 {
                     insertCommand.Parameters.Add("@Street"
@@ -76,6 +76,8 @@ namespace ClassLibTeam02.Data
                     insertCommand.Parameters.Add("@Floors"
                     , SqlDbType.TinyInt).Value =
                     floors; 
+
+
                     if(floor == null)
                         insertCommand.Parameters.Add("@Floor"
                         , SqlDbType.SmallInt).Value = DBNull.Value;
@@ -92,10 +94,12 @@ namespace ClassLibTeam02.Data
                     DBNull.Value;
                     else insertCommand.Parameters.Add("@GardenSurface"
                         ,SqlDbType.Float).Value =gardenSurface;
-
                     insertCommand.Parameters.Add("@Price"
                     , SqlDbType.Float).Value =
                     price;
+                    insertCommand.Parameters.Add("@ImageSource", SqlDbType.VarChar).Value = imageSource;
+                    insertCommand.Parameters.Add("@AudioSource", SqlDbType.VarChar).Value = audioSource;
+
                     result = InsertRecord(insertCommand);
                 }
             }
@@ -112,7 +116,7 @@ namespace ClassLibTeam02.Data
         /// <returns></returns>
         public InsertResult InsertHouse(House house)
         {
-            return InsertHouse(house.HouseAdress.Street, house.HouseAdress.HouseNumber, house.HouseAdress.AreaCode, house.CreationYear, house.ConvertHouseType(), house.AmountRooms, house.Floors, house.Floor, house.HouseSurface, house.GardenSurface, house.Price);
+            return InsertHouse(house.HouseAdress.Street, house.HouseAdress.HouseNumber, house.HouseAdress.AreaCode, house.CreationYear, house.ConvertHouseType(), house.AmountRooms, house.Floors, house.Floor, house.HouseSurface, house.GardenSurface, house.Price, house.imageSource, house.audioSource);
         }
 
         public SelectResult GetCity(string areaCode)

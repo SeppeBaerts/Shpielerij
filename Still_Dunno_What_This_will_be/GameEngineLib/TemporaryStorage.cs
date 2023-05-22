@@ -27,6 +27,7 @@ namespace GameEngineLib
         public static Rect GameOverRect;
         public static bool HasCompleted;
         public static bool HasDied;
+        public static bool PressingLiftKey;
         public static char BlockedLR { get; private set; } = '\0';
         public static char BlockedUD { get; private set; } = '\0';
         private static DispatcherTimer powerTimer = new DispatcherTimer();
@@ -42,6 +43,15 @@ namespace GameEngineLib
                 if (!(item is Player))
                     item.MoveBy(x, y);
             }
+        }
+        public static void StartLifting()
+        {
+            var collissionItem = Items.Where(i => !(i is Player) && !(i is PowerUp) && i.OutlineRect.IntersectsWith(CurrentPlayer.OutlineRect) && i.CanBePickedUp).FirstOrDefault();
+            if (collissionItem != null && PressingLiftKey && !CurrentPlayer.IsCarrying)
+                CurrentPlayer.StartCarryingObject(collissionItem);
+            else if (CurrentPlayer.IsCarrying && !PressingLiftKey)
+                CurrentPlayer.StopCarryingObject();
+
         }
         public static bool HasCollided(Rect detectableItem)
         {
@@ -61,6 +71,7 @@ namespace GameEngineLib
 
             foreach (var i in collissionPowerUps)
                 i.ActivateEffect(CurrentPlayer);
+
             if (collissionItem != null)
             {
                 GetCollision(detectableItem, collissionItem.OutlineRect);

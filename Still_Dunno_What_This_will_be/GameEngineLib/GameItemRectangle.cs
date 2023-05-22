@@ -12,7 +12,7 @@ namespace GameEngineLib
 {
     public class GameItemRectangle : GameItem
     {
-        public GameItemRectangle(double left, double top, int width, int height, bool colDetection = true, int movementSpeed = 5, int movementAmount = 0) : base(left, top, width, height, movementSpeed, colDetection, movementAmount)
+        public GameItemRectangle(double left, double top, int width, int height, bool canBePickedUp, bool colDetection = true, int movementSpeed = 5, int movementAmount = 0) : base(left, top, width, height, canBePickedUp, movementSpeed, colDetection, movementAmount)
         {
             ObjectElement = new Rectangle
             {
@@ -40,7 +40,7 @@ namespace GameEngineLib
         }
         internal override void Dup_Click(object sender, RoutedEventArgs e)
         {
-            GameItemRectangle rectie = new GameItemRectangle(ActualLeft+15, ActualTop+15, Width, Height, true, MovementSpeed, MovingAmount);
+            GameItemRectangle rectie = new GameItemRectangle(ActualLeft+15, ActualTop+15, Width, Height, CanBePickedUp, true, MovementSpeed, MovingAmount);
             rectie.Parent = Parent;
         }
     }

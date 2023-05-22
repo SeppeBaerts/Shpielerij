@@ -49,12 +49,26 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\albertlaan191_a.jpg" />
+	  <None Remove="Resources\Images\Kempenweg_39_a.jpg" />
+	  <None Remove="Resources\Images\kleine_breebeemdlaan8_a.jpg" />
+	  <None Remove="Resources\Raw\albertlaan191_a.mp3" />
+	  <None Remove="Resources\Raw\kempenweg_39_a.mp3" />
+	  <None Remove="Resources\Raw\kleine_breebeemdlaan8_a.wav" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui.MediaElement" Version="1.0.2" />
 		<PackageReference Include="Dropbox.Api" Version="6.37.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\ClassLibTeam02\ClassLibTeam02.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Resources\Sounds\" />
 	</ItemGroup>
 
 </Project>
