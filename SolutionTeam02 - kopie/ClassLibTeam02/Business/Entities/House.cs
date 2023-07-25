@@ -40,6 +40,7 @@ namespace ClassLibTeam02.Business.Entities
         /// If price is 0 --> house is sold.
         /// </summary>
         public double Price { get; set; }
+        public string PriceString => $"{Price:C}";
         #endregion
         internal string imageSource;
         internal string audioSource;

@@ -6,18 +6,25 @@
     <Grid RowDefinitions="50, *" x:Name="MainGrid">
         <toolkit:MediaElement IsVisible="false" x:Name="MainMed" MediaFailed="MainMed_MediaFailed"/>
         
+        <!-- MAUI-04 -->
         <Button Text="Load Content"
                 Clicked="Button_Clicked"/>
+
+        <Image Grid.Row="2" x:Name="BigImage" ZIndex="5"/>
+        <!--MAUI-01 -->
         <ListView
         x:Name="LstHouses" Grid.Row="2"
             HasUnevenRows="True"
             ItemTapped="LstHouses_ItemTapped">
+            <!-- MAUI-02-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
+                        <!--#region MAUI-03 -->
                         <Grid Padding="20"
                             ColumnDefinitions="100, *"
                             RowDefinitions="Auto, Auto, Auto, Auto">
+                            <!-- MAUI-09-->
                             <Image Source="{Binding ImageFilePath}" Grid.RowSpan="3" Margin="5"/>
                             <Label Text="{Binding HouseAdress}" Grid.Column="1"/>
                             <VerticalStackLayout Grid.Row="1" Grid.Column="1"
@@ -45,13 +52,14 @@
                                 </HorizontalStackLayout>
                             </VerticalStackLayout>
 
-                            <Label Text="{Binding Price}" 
+                            <Label Text="{Binding PriceString}" 
                                    TextDecorations="Underline" 
                                    FontAttributes="Bold" 
                                    Grid.Column="1" Grid.Row="3" 
                                    HorizontalOptions="End" 
                                    FontSize="18"/>
                         </Grid>
+                        <!--#endregion-->
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>

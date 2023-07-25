@@ -1,0 +1,86 @@
+﻿<Window x:Class="PandaPark2.Windows.AddBird"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PandaPark2.Windows"
+        mc:Ignorable="d"
+        Title="Vogel Toevoegen" Height="450" Width="800">
+    <DockPanel Background="White">
+        <StackPanel Background="#58a518" DockPanel.Dock="Top">
+            <Image Source="/images/birds.jpg" Height="150" Stretch="Uniform"></Image>
+        </StackPanel>
+
+        <Grid Margin="20 10 50 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Margin="20 0" VerticalAlignment="Center">Naam</TextBlock>
+            <TextBox Grid.Column="1" HorizontalAlignment="Stretch"
+                        Name="TextBoxName"></TextBox>
+            <TextBlock Margin="20 0" Grid.Row="1" VerticalAlignment="Center">Soort</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Stretch"
+                        Name="TextBoxType"></TextBox>
+            <TextBlock Margin="20 0" VerticalAlignment="Center"
+                        Grid.Row="2">Is gevaarlijk</TextBlock>
+            <CheckBox Grid.Column="1" Grid.Row="2" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" Name="CheckBoxDanger"
+                        ></CheckBox>
+            <TextBlock Margin="20 0" VerticalAlignment="Center"
+                        Grid.Row="3">Dieet</TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="3" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" Name="ComboBoxDiet"
+                        >
+                <ComboBoxItem>Herbivoor</ComboBoxItem>
+                <ComboBoxItem>Carnivoor</ComboBoxItem>
+                <ComboBoxItem>Omnivoor</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Margin="20 0" VerticalAlignment="Center"
+                        Grid.Row="4">Geslacht</TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" Name="ComboBoxGender"
+                        >
+                <ComboBoxItem>Mannelijk</ComboBoxItem>
+                <ComboBoxItem>Vrouwelijk</ComboBoxItem>
+            </ComboBox>
+            <TextBlock Margin="20 0" VerticalAlignment="Center"
+                        Grid.Row="5">Geboorteland</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="5" HorizontalAlignment="Stretch" Name="TextBoxCountry"
+                        ></TextBox>
+            <TextBlock Margin="20 0" VerticalAlignment="Center"
+                        Grid.Row="6">GeboorteDatum</TextBlock>
+            <DatePicker Grid.Column="1" Grid.Row="6" HorizontalAlignment="Stretch" Name="DatePickerBirth"
+                        ></DatePicker>
+
+            <TextBlock Margin="20 0" VerticalAlignment="Center" Grid.Row="7">NestType</TextBlock>
+            <ComboBox Grid.Column="1" Grid.Row="7" HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center" Name="ComboBoxNestType"
+                        >
+                <ComboBoxItem>Platform nest</ComboBoxItem>
+                <ComboBoxItem>Kom nest</ComboBoxItem>
+                <ComboBoxItem>Holte nest</ComboBoxItem>
+                <ComboBoxItem>Grond nest</ComboBoxItem>
+            </ComboBox>
+
+            <TextBlock Margin="20 0" VerticalAlignment="Center" Grid.Row="8">WingSpan</TextBlock>
+            <TextBox Grid.Column="1" Grid.Row="8" HorizontalAlignment="Stretch"
+                        Name="TextBoxWingSpan"></TextBox>
+
+            <Button Grid.Row="9" Click="AddBird_Click" Margin="3">Voeg Vogel Toe</Button>
+        </Grid>
+
+    </DockPanel>
+</Window>

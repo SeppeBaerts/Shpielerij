@@ -1,0 +1,25 @@
+﻿<Window x:Class="PandaPark2.Windows.AllAnimals"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PandaPark2.Windows"
+        mc:Ignorable="d"
+        Title="Alle Dieren" Height="450" Width="800">
+    <DockPanel Background="White">
+        <StackPanel Background="#58a518" DockPanel.Dock="Top">
+            <Image Source="/images/pandixenco.jpg" Height="170" Stretch="Uniform"></Image>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center"
+                    Margin="20 10 20 0">
+            <TextBlock Width="50">Filter</TextBlock>
+
+            <TextBox Width="200" Margin="20 0" Name="TextBoxFilter" TextChanged="TextBoxFilter_TextChanged"></TextBox>
+        </StackPanel>
+
+        <DataGrid HorizontalAlignment="Stretch" Margin="20 10" 
+                    VerticalAlignment="Stretch" Name="AnimalGrid"
+                    IsReadOnly="True"/>
+
+    </DockPanel>
+</Window>

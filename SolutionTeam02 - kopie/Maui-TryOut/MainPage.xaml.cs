@@ -8,10 +8,16 @@ namespace Maui_TryOut
 {
     public partial class MainPage : ContentPage
     {
-        RestService rest = new();
+        #region buttonTexts
+        private string enlargeImage => "Enlarge image";
+        private string closeImage => "Close Image";
+            #endregion
+
+        readonly RestService rest = new();
         ObservableCollection<House> houses;
         MediaElement med;
-        MediaSourceConverter converter = new MediaSourceConverter();
+        readonly MediaSourceConverter converter = new MediaSourceConverter();
+        readonly ImageSourceConverter imageSourceConverter = new ImageSourceConverter();
         House currentHouse;
         public MainPage()
         {
@@ -20,11 +26,32 @@ namespace Maui_TryOut
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
-            houses = rest.GetHouses();
-            LstHouses.ItemsSource = houses;
+            Button sdr = (Button)sender;
+            if (sdr.Text == "Load Content")
+            {
+                houses = rest.GetHouses();
+                LstHouses.ItemsSource = houses;
+                sdr.Text = enlargeImage;
+            }
+            else if (LstHouses.SelectedItem != null && sdr.Text == enlargeImage)
+            {
+                BigImage.Source = (ImageSource)imageSourceConverter.ConvertFromString(((House)LstHouses.SelectedItem).ImageFilePath);
+                BigImage.ZIndex = 5;
+                sdr.Text = closeImage;
+            }
+            else if (LstHouses.SelectedItem != null && sdr.Text == closeImage)
+            {
+                BigImage.Source = null;
+                BigImage.ZIndex = 0;
+                sdr.Text = enlargeImage;
+            }
+            else
+                DisplayAlert("hmmm", "Something went wrong here, we're not sure why \n" +
+                    "but we can figure it out! please contact us at pxl@support.com", "Close");
         }
         private void PlaySound(string audiopath)
         {
+            //MAUI-10
             med.Source = (MediaSource)converter.ConvertFromString($"embed://{audiopath}");
             med.Play();
         }
@@ -44,7 +71,9 @@ namespace Maui_TryOut
 
         private void MainMed_MediaFailed(object sender, CommunityToolkit.Maui.Core.Primitives.MediaFailedEventArgs e)
         {
-            _ = 5;
+            DisplayAlert("woops", "Looks like something went " +
+                "wrong with playing an audio file. please contact pxl@supportteam.com.", 
+                "That's fine!");
         }
     }
 }

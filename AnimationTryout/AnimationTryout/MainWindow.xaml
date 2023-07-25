@@ -1,0 +1,19 @@
+﻿<Window x:Class="AnimationTryout.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AnimationTryout"
+        mc:Ignorable="d"
+        Title="Animations" Height="450" Width="800">
+    <Canvas Name="MainCanvas">
+        <Rectangle Name="RectFade" Width="250" Height="120" Canvas.Top="10" Canvas.Left="10" Fill="Black" RenderTransformOrigin="0.5,0.5">
+        </Rectangle>
+        <Button Name="BtnFade" Canvas.Top="10" Canvas.Left="282" Click="BtnFade_Click" Content="Fade" HorizontalAlignment="Left" Height="120" VerticalAlignment="Center" Width="115"/>
+        <Button Name="BtnChange" Canvas.Top="173" Canvas.Left="224" Click="BtnChange_Click" Content="Change"/>
+        <Label Name="LblChange" Canvas.Top="135" FontSize="18" Content="This is a damn test" HorizontalAlignment="Left" Canvas.Left="10" VerticalAlignment="Center"/>
+        <Button Name="BtnPulse" Content="Pulse" Canvas.Left="402" Canvas.Top="10" Height="120" Width="114" Click="BtnPulse_Click" MouseEnter="BtnPulse_MouseEnter"/>
+        <TextBox Name="TxtTarget" Text="This is the target content" Canvas.Left="10" Canvas.Top="199" HorizontalAlignment="Left" Height="86" VerticalAlignment="Center" Width="185"/>
+        <Button x:Name="BtnTest_Useless" Canvas.Top="242" Canvas.Left="459" Content="Test me!" MouseEnter="BtnTest_Useless_MouseEnter" MouseLeave="BtnTest_Useless_MouseLeave"/>
+    </Canvas>
+</Window>
